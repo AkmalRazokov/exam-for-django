@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block title %} Home {% endblock title %}
+{% block content %}
+
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>amount</th>
+            <th>Description</th>
+            <th>created_at</th>
+            <th>category</th>
+        </tr>
+    {% for income in incomes %}
+        <tr>
+            <td> {{income.id}} </td>
+            <th>{{income.amount}}</th>
+            <td> {{income.description}} </td>
+            <td> {{income.created_at}} </td>
+            <td> {{income.category}} </td>
+            <td> 
+                <a href="{% url 'income_edit' income.id %}">Edit</a>
+                <a href="#">Delete</a>
+            </td>
+        </tr>
+    {% endfor %}    
+    </table>
+{% endblock content %}

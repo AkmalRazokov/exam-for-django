@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %} Delete {% endblock title %}
+{% block content %}
+    <h1>Are you sure to delete {{income.amount}}</h1>
+  <a href="{% url 'income_list' %}">
+    <input type="submit" value="NO">
+  </a>
+  <form method="post">
+    {% csrf_token %}
+    <input class="dd" type="submit" value="YES">
+  </form>
+{% endblock content %}
