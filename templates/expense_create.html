@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% block title %}Добавить расход{% endblock title %}
+{% block content %}
+<h2>Создание расхода</h2>
+<form method="post">
+    {% csrf_token %}
+    {% if error %}<p style="color:red">{{error}}</p>{% endif %}
+    <label for="amount">Сумма:</label><br>
+    <input type="number" name="amount" id="amount" value="{{ amount }}"><br><br>
+    <label for="description">Описание:</label><br>
+    <input type="text" name="description" id="description" value="{{description}}"><br><br>
+    <label for="category">Категория:</label><br>
+    <select name="category" id="category">
+        <option value="">выберите категорию</option>
+        {% for cat in categories %}
+            <option value="{{cat.id}}"
+                {% if cat.id %}selected{% endif %}>
+                {{ cat.name }}
+            </option>
+        {% endfor %}
+    </select><br><br>
+
+    <input type="submit" value="Сохранить">
+</form>
+<a href="{% url 'expense_list' %}">Назад</a>
+{% endblock content %}

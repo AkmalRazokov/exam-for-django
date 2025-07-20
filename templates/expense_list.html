@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Expense List{% endblock title %}
+{% block content %}
+<h2>Список расходов</h2>
+<a href="{% url 'expense_create' %}">Добавить расход</a>
+<table border="1">
+    <tr>
+        <th>ID</th>
+        <th>Сумма</th>
+        <th>Описание</th>
+        <th>Категория</th>
+        <th>Дата</th>
+        <th>Действия</th>
+    </tr>
+    {% for expense in expenses %}
+    <tr>
+        <td>{{expense.id}}</td>
+        <td>{{expense.amount}}</td>
+        <td>{{expense.description}}</td>
+        <td>{{expense.category.name}}</td>
+        <td>{{expense.created_at}}</td>
+        <td>
+            <a href="{% url 'expense_edit' expense.id %}">Edit</a>
+            |
+            <a href="{% url 'expense_delete' expense.id %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+{% endblock content %}

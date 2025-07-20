@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% block title %} Home {% endblock title %}
 {% block content %}
-
+<a href="{% url 'income_create' %}">Добавить доход</a>
     <table>
         <tr>
             <th>ID</th>
@@ -13,13 +13,14 @@
     {% for income in incomes %}
         <tr>
             <td> {{income.id}} </td>
-            <th>{{income.amount}}</th>
+            <td>{{income.amount}}</td>
             <td> {{income.description}} </td>
             <td> {{income.created_at}} </td>
             <td> {{income.category}} </td>
             <td> 
                 <a href="{% url 'income_edit' income.id %}">Edit</a>
-                <a href="#">Delete</a>
+                <a href="{% url 'income_delete' income.id %}">Delete</a>
+
             </td>
         </tr>
     {% endfor %}    

@@ -8,7 +8,16 @@
         <input type="number" name="amount" id="amount" value="{{amount}}"><br>
         <label for="description">Description</label>
         <input type="text" name="description" id="description" value="{{description}}" placeholder="add description"><br>
-       
+         <label for="category">Категория:</label><br>
+        <select name="category" id="category">
+        <option value="">-- выберите категорию --</option>
+        {% for cat in category %}
+            <option value="{{ cat.id }}"
+                {% if cat.id %}selected{% endif %}>
+                {{ cat.name }}
+            </option>
+        {% endfor %}
+        </select><br><br>
         <input class="sb" type="submit" value="Save">
     </form>
 {% endblock content %}
